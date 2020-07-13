@@ -3,7 +3,7 @@
    version = "1.0">
    <Group
       location = "container:"
-      name = "MetalByExample">
+      name = "MetalByExample-Rust">
       <Group
          location = "container:Common"
          name = "Common">
@@ -26,6 +26,9 @@
          <Group
             location = "container:03-DrawingIn2D/drawing_in_2d_ios"
             name = "drawing_in_2d_ios">
+            <FileRef
+               location = "group:DrawingIn2DIOS/DrawingIn2DIOS.xcodeproj">
+            </FileRef>
          </Group>
       </Group>
    </Group>

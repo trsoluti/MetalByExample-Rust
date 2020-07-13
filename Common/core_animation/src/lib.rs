@@ -10,7 +10,9 @@
 #![deny(missing_docs)]
 //! Thin wrappers for the classes and methods we use from Core Animation
 
-pub mod core_animation;
+mod core_animation;
+// Look in the core animation mod to see what's exported
+pub use core_animation::*;
 
 #[cfg(test)]
 mod tests {

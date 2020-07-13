@@ -1,5 +1,5 @@
 [package]
-name = "core_animation"
+name = "drawing_in_2d_ios"
 version = "0.1.0"
 authors = ["trsolutions <thomas_odell@trsolutions.biz>"]
 edition = "2018"
@@ -9,7 +9,9 @@ edition = "2018"
 [dependencies]
 objc = "*"
 cocoa = "*"
+state = "*"
+metal_kit = { path = "../../Common/metal_kit" }
+core_animation = { path = "../../Common/core_animation" }
 
-#[lib]
-#name = "core_animation"
-#crate-type = ["staticlib"]
+[lib]
+crate-type = ["staticlib"]

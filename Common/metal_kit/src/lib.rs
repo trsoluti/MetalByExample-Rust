@@ -10,6 +10,10 @@
 #![deny(missing_docs)]
 //! Thin wrappers for the classes and methods we use from Core Animation
 
+mod metal_kit;
+
+pub use metal_kit::*;
+
 #[cfg(test)]
 mod tests {
     #[test]

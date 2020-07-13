@@ -9,7 +9,8 @@ edition = "2018"
 [dependencies]
 objc = "*"
 cocoa = "*"
+core_animation = { path = "../core_animation" }
 
-[lib]
-name = "metal_kit"
-crate-type = ["staticlib"]
+#[lib]
+#name = "metal_kit"
+#crate-type = ["staticlib"]
