@@ -1,0 +1,15 @@
+[package]
+name = "core_animation"
+version = "0.1.0"
+authors = ["trsolutions <thomas_odell@trsolutions.biz>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+objc = "*"
+cocoa = "*"
+
+[lib]
+name = "core_animation"
+crate-type = ["staticlib"]
