@@ -33,6 +33,7 @@
 - (instancetype) initWithTarget:(id)target
                        selector:(SEL)sel
                didFailWithError: (NSError * _Nullable __autoreleasing *)error {
+  //+ NSLog(@"In CAVDisplayLink initWithTarget");
   if (self = [super init]) {
     _target = target;
     _selector = sel;
