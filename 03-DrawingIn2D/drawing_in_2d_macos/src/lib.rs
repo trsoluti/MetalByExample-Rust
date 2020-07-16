@@ -44,7 +44,6 @@ pub fn  debug_log(message: &str) {
     }
 }
 
-
 #[no_mangle]
 /// Registers all the rust classes with the Objective C runtime
 pub extern "C" fn register_rust_classes() {

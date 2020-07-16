@@ -377,6 +377,7 @@ extern "C" fn did_move_to_superview(_self: &mut Object, _sel: Sel) {
         // self.displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(displayLinkDidFire:)];
         let display_link = {
             CoreAnimDisplayLink::display_link_with_target_and_selector(_self, sel!(displayLinkDidFire:))
+                .expect("Unable to create display link")
         };
         let mut rust_metal_view = get_mut_rust_metal_view(_self).unwrap();
         rust_metal_view.display_link = display_link;

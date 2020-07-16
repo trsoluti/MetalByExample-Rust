@@ -21,6 +21,3 @@ int main(int argc, char * argv[]) {
   NSString *appDelegateClassName = @"AppDelegate";
   return UIApplicationMain(argc, argv, nil, appDelegateClassName);
 }
-
-Xcode/Metal/MetalByExample/03-DrawingIn2D/DrawingIn2DMacOS/DrawingIn2DMacOS/ViewController.h
-Xcode/Metal/MetalByExample/03-DrawingIn2D/DrawingIn2DMacOS/DrawingIn2DMacOS.xcodeproj/DrawingIn2DMacOS/ViewController.h

@@ -14,4 +14,12 @@ metal_kit = { path = "../../Common/metal_kit" }
 core_animation = { path = "../../Common/core_animation" }
 
 [lib]
-crate-type = ["staticlib"]
+crate-type = ["cdylib"]
+
+#
+# Before compilation, need to copy libGlueLib.dylib to
+# target/debug/deps/
+#
+# After compilation need to code-sign with full pathname.
+# See Signing & Capabilities for team info.
+#

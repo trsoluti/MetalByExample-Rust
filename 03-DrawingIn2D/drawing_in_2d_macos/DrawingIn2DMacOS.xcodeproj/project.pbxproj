@@ -9,8 +9,9 @@
 /* Begin PBXBuildFile section */
 		851CFD9B24BF174500562AA6 /* libGlueLib.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 851CFD9A24BF174500562AA6 /* libGlueLib.dylib */; };
 		851CFD9C24BF174500562AA6 /* libGlueLib.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 851CFD9A24BF174500562AA6 /* libGlueLib.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		851CFD9F24BF20F000562AA6 /* libdrawing_in_2d_macos.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 851CFD9E24BF20BB00562AA6 /* libdrawing_in_2d_macos.a */; };
 		8549B5BA24BED940005D95D4 /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 8549B5B924BED940005D95D4 /* Shaders.metal */; };
+		85F66F6B24C07AB8007EBE19 /* libdrawing_in_2d_macos.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 85F66F6A24C07AB8007EBE19 /* libdrawing_in_2d_macos.dylib */; };
+		85F66F6C24C07AEB007EBE19 /* libdrawing_in_2d_macos.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 85F66F6A24C07AB8007EBE19 /* libdrawing_in_2d_macos.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		85F6849124BD771400916526 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85F6849024BD771400916526 /* Assets.xcassets */; };
 		85F6849424BD771400916526 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85F6849224BD771400916526 /* Main.storyboard */; };
 		85F6849724BD771400916526 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F6849624BD771400916526 /* main.m */; };
@@ -23,6 +24,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				85F66F6C24C07AEB007EBE19 /* libdrawing_in_2d_macos.dylib in Embed Libraries */,
 				851CFD9C24BF174500562AA6 /* libGlueLib.dylib in Embed Libraries */,
 			);
 			name = "Embed Libraries";
@@ -34,6 +36,7 @@
 		851CFD9A24BF174500562AA6 /* libGlueLib.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libGlueLib.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		851CFD9E24BF20BB00562AA6 /* libdrawing_in_2d_macos.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libdrawing_in_2d_macos.a; path = target/debug/libdrawing_in_2d_macos.a; sourceTree = "<group>"; };
 		8549B5B924BED940005D95D4 /* Shaders.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
+		85F66F6A24C07AB8007EBE19 /* libdrawing_in_2d_macos.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libdrawing_in_2d_macos.dylib; path = target/debug/libdrawing_in_2d_macos.dylib; sourceTree = "<group>"; };
 		85F6848724BD771300916526 /* DrawingIn2DMacOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DrawingIn2DMacOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		85F6849024BD771400916526 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		85F6849324BD771400916526 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -48,7 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				851CFD9F24BF20F000562AA6 /* libdrawing_in_2d_macos.a in Frameworks */,
+				85F66F6B24C07AB8007EBE19 /* libdrawing_in_2d_macos.dylib in Frameworks */,
 				851CFD9B24BF174500562AA6 /* libGlueLib.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -89,6 +92,7 @@
 		85F684A524BD8F1F00916526 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				85F66F6A24C07AB8007EBE19 /* libdrawing_in_2d_macos.dylib */,
 				851CFD9E24BF20BB00562AA6 /* libdrawing_in_2d_macos.a */,
 				851CFD9A24BF174500562AA6 /* libGlueLib.dylib */,
 				85F684A624BD8F1F00916526 /* libGlueLib.dylib */,
