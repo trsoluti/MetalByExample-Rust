@@ -30,6 +30,7 @@ use metal_kit::MetalBuffer;
 use metal_kit::{MetalRenderPassDescriptor, MTLStoreActionStore, MTLLoadActionClear};
 use metal_kit::MetalClearColor;
 use metal_kit::MTLPrimitiveTypeTriangle;
+use std::pin::Pin;
 
 extern {
     fn NSLogv(fmt: id, ...);
@@ -105,7 +106,7 @@ impl From<[f32;8]> for MBEVertex {
 pub struct MetalViewRust {
     #[allow(dead_code)]
     // delegate: Renderer,
-    display_link: CoreAnimVideoDisplayLink,
+    display_link: Option<Pin<Box<CoreAnimVideoDisplayLink>>>,
     layer: CoreAnimMetalLayer,
     device: MetalDevice,
     pipeline: MetalRenderPipelineState,
@@ -269,12 +270,13 @@ impl MetalViewRust {
     // /// Makes a display link timer that will fire when the main display syncs
     // -(void)makeDisplayLink
     // {
-    fn make_display_link(&mut self, _self: &Object) {
+    fn make_display_link(&mut self, _self: &mut Object) {
         // self.displayLink = [CAVDisplayLink displayLinkWithTarget:self selector:@selector(displayLinkDidFire:) didFailWithError:nil];
-        self.display_link = CoreAnimVideoDisplayLink::display_link_with_target_and_selector(_self, sel!(displayLinkDidFire:)).unwrap();
+        let display_link = CoreAnimVideoDisplayLink::display_link_with_target_and_selector(_self, sel!(displayLinkDidFire:)).unwrap();
         // [self.displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
         let main_loop:id = unsafe { msg_send![class!(NSRunLoop), mainRunLoop] };
-        self.display_link.add_to_run_loop_for_mode(main_loop, unsafe { NSRunLoopCommonModes })
+        display_link.add_to_run_loop_for_mode(main_loop, unsafe { NSRunLoopCommonModes });
+        self.display_link = Some(display_link);
     }
     // }
     //
@@ -378,7 +380,7 @@ extern "C" fn init_with_coder(_self: &mut Object, _sel: Sel, coder: id) -> id {
         rust_metal_view.make_device();
         rust_metal_view.make_buffers();
         rust_metal_view.make_pipeline();
-        rust_metal_view.make_display_link(unsafe { _self.as_ref().unwrap() } );
+        rust_metal_view.make_display_link(unsafe { _self.as_mut().unwrap() } );
     }
     // }
     //
@@ -393,7 +395,10 @@ extern "C" fn init_with_coder(_self: &mut Object, _sel: Sel, coder: id) -> id {
 extern "C" fn dealloc(_self: &mut Object, _sel: Sel) {
     let mut rust_metal_view = get_mut_rust_metal_view(_self).unwrap();
     // [_displayLink invalidate];
-    rust_metal_view.display_link.invalidate();
+    match &mut rust_metal_view.display_link {
+        Some(display_link) => display_link.invalidate(),
+        None => ()
+    }
 }
 // }
 //
