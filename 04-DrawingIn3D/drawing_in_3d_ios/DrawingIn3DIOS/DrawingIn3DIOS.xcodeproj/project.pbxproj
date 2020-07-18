@@ -18,6 +18,7 @@
 		850EFDEE24C29FE7000B6FB5 /* MetalView.m in Sources */ = {isa = PBXBuildFile; fileRef = 850EFDE724C29FE7000B6FB5 /* MetalView.m */; };
 		850EFDEF24C29FE7000B6FB5 /* MBEMathUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 850EFDE824C29FE7000B6FB5 /* MBEMathUtilities.m */; };
 		850EFDF024C29FE7000B6FB5 /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 850EFDEC24C29FE7000B6FB5 /* Shaders.metal */; };
+		850EFDF624C2B86E000B6FB5 /* libdrawing_in_3d_ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 850EFDF424C2B81D000B6FB5 /* libdrawing_in_3d_ios.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		850EFDEA24C29FE7000B6FB5 /* MBERenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBERenderer.h; sourceTree = "<group>"; };
 		850EFDEB24C29FE7000B6FB5 /* MBEMathUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBEMathUtilities.h; sourceTree = "<group>"; };
 		850EFDEC24C29FE7000B6FB5 /* Shaders.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
+		850EFDF424C2B81D000B6FB5 /* libdrawing_in_3d_ios.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libdrawing_in_3d_ios.a; path = "../target/aarch64-apple-ios/debug/libdrawing_in_3d_ios.a"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				850EFDF624C2B86E000B6FB5 /* libdrawing_in_3d_ios.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,6 +61,7 @@
 			children = (
 				850EFDCC24C29E11000B6FB5 /* DrawingIn3DIOS */,
 				850EFDCB24C29E11000B6FB5 /* Products */,
+				850EFDF324C2B81D000B6FB5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -100,6 +104,14 @@
 				850EFDE624C29FE7000B6FB5 /* MBERenderer.m */,
 			);
 			path = MBEItems;
+			sourceTree = "<group>";
+		};
+		850EFDF324C2B81D000B6FB5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				850EFDF424C2B81D000B6FB5 /* libdrawing_in_3d_ios.a */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -327,6 +339,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = "$PROJECT_DIR/../target/aarch64-apple-ios/debug";
 				PRODUCT_BUNDLE_IDENTIFIER = biz.trsolutions.DrawingIn3DIOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -345,6 +358,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = "$PROJECT_DIR/../target/aarch64-apple-ios/debug";
 				PRODUCT_BUNDLE_IDENTIFIER = biz.trsolutions.DrawingIn3DIOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
