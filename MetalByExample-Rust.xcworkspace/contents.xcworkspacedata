@@ -5,6 +5,17 @@
       location = "container:"
       name = "MetalByExample-Rust">
       <Group
+         location = "container:04-DrawingIn3D"
+         name = "04-DrawingIn3D">
+         <Group
+            location = "container:04-DrawingIn3D/drawing_in_3d_ios"
+            name = "drawing_in_3d_ios">
+            <FileRef
+               location = "group:DrawingIn3DIOS/DrawingIn3DIOS.xcodeproj">
+            </FileRef>
+         </Group>
+      </Group>
+      <Group
          location = "container:Common"
          name = "Common">
          <Group
