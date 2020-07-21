@@ -21,6 +21,7 @@ use std::fmt::{Display, Formatter};
 use crate::metal_kit::metal_command_queue::MetalCommandQueue;
 use crate::metal_kit::metal_buffer::MetalBuffer;
 use cocoa::foundation::NSUInteger;
+use crate::{MetalTextureDescriptor, MetalTexture, MetalDepthStencilDescriptor, MetalDepthStencilState};
 
 #[link(name="Metal", kind="framework")]
 extern {
@@ -127,5 +128,20 @@ impl MetalDevice {
         let data_ptr = pointer.first().unwrap() as *const _;
         let buffer:id = unsafe { msg_send![self.device, newBufferWithBytes:data_ptr length:length options:options] };
         MetalBuffer::from(buffer)
+    }
+    /// Allocates a new zero-filled buffer of a given length.
+    pub fn new_buffer_with_length_and_options(&mut self, length: NSUInteger, options: MTLResourceOptions) -> MetalBuffer {
+        let buffer:id = unsafe { msg_send![self.device, newBufferWithLength:length options:options] };
+        MetalBuffer::from(buffer)
+    }
+    /// Creates a texture on the heap with the given properties.
+    pub fn new_texture_with_descriptor(&self, descriptor: MetalTextureDescriptor) -> MetalTexture {
+        let texture:id = unsafe { msg_send![self.device, newTextureWithDescriptor:descriptor] };
+        MetalTexture::from(texture)
+    }
+    /// Creates a new object that contains depth and stencil test state.
+    pub fn new_depth_stencil_state_with_descriptor(&self, descriptor: MetalDepthStencilDescriptor) -> MetalDepthStencilState {
+        let state:id = unsafe { msg_send![self.device, newDepthStencilStateWithDescriptor:descriptor] };
+        MetalDepthStencilState::from(state)
     }
 }

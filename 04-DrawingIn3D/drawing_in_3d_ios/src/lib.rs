@@ -15,6 +15,9 @@ mod app_delegate;
 mod scene_delegate;
 mod view_controller;
 mod mbe_items;
+mod generic_id;
+mod vector_types;
+mod matrix_types;
 
 use cocoa::base::{id, nil};
 use cocoa::foundation::{NSAutoreleasePool, NSString};
@@ -22,6 +25,14 @@ use cocoa::foundation::{NSAutoreleasePool, NSString};
 pub use crate::app_delegate::AppDelegateRust;
 pub use crate::scene_delegate::SceneDelegateRust;
 pub use crate::view_controller::ViewControllerRust;
+pub use crate::vector_types::vector_uint2;
+pub use crate::vector_types::vector_float2;
+pub use crate::vector_types::vector_float3;
+pub use crate::vector_types::vector_float4;
+pub use crate::matrix_types::matrix_float4x4;
+pub use crate::mbe_items::RustMetalView;
+pub use crate::mbe_items::RustMetalViewDelegate;
+pub use crate::mbe_items::RustMBERenderer;
 
 
 extern {
@@ -41,10 +52,10 @@ pub fn  debug_log(message: &str) {
 /// Registers all the rust classes with the Objective C runtime
 pub extern "C" fn register_rust_classes() {
     debug_log("In register_rust_classes");
-    // AppDelegateRust::register();
-    // SceneDelegateRust::register();
-    // ViewControllerRust::register();
-    // MetalViewRust::register();
+    AppDelegateRust::register();
+    SceneDelegateRust::register();
+    ViewControllerRust::register();
+    RustMetalView::register();
 }
 
 

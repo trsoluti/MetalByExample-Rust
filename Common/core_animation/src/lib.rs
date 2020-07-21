@@ -13,6 +13,10 @@
 mod core_animation;
 // Look in the core animation mod to see what's exported
 pub use core_animation::*;
+
+mod dispatch;
+pub use dispatch::*;
+
 use std::os::raw::c_int;
 use std::fmt::{Display, Formatter};
 use std::error::Error;

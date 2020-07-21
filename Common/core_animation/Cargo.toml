@@ -9,6 +9,7 @@ edition = "2018"
 [dependencies]
 objc = "*"
 cocoa = "*"
+core-graphics = "*"
 
 #[lib]
 #name = "core_animation"

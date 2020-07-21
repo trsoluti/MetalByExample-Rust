@@ -19,6 +19,13 @@
          location = "container:Common"
          name = "Common">
          <Group
+            location = "container:"
+            name = "GlueLibFramework">
+            <FileRef
+               location = "group:Common/GlueLibFramework/GlueLibFramework.xcodeproj">
+            </FileRef>
+         </Group>
+         <Group
             location = "container:Common/GlueLib"
             name = "GlueLib">
             <FileRef

@@ -27,6 +27,7 @@ use {
     std::pin::Pin,
     std::ops::Deref,
 };
+use cocoa::foundation::{NSInteger, NSTimeInterval};
 
 
 // System/Library/Frameworks/Foundation.framework/Headers/NSRunLoop.h:
@@ -114,6 +115,11 @@ extern {
     );
     // dispatch_queue_main_t _Nonnull dispatch_get_main_queue_not_inline(void);
     fn dispatch_get_main_queue_not_inline() -> dispatch_queue_t;
+}
+#[cfg(target_os = "ios")]
+extern {
+    #[allow(non_upper_case_globals)]
+    static NSRunLoopCommonModes: id;
 }
 
 
@@ -234,6 +240,12 @@ impl CoreAnimDisplayLink {
         unsafe { pool.drain() }
         Ok(CoreAnimDisplayLink::from(display_link))
     }
+    /// Sets the preferred frame rate for the display link callback.
+    #[allow(unused)]
+    pub fn set_preferred_frames_per_second(&self, preferred_frames_per_second: NSInteger) {
+        #[cfg(target_os = "ios")]
+        unsafe { msg_send![self.display_link, setPreferredFramesPerSecond:preferred_frames_per_second] }
+    }
     /// Registers the display link with a run loop.
     pub fn add_to_run_loop_for_mode(&self, _run_loop: id, _mode: id) {
         #[cfg(target_os = "ios")]
@@ -243,7 +255,30 @@ impl CoreAnimDisplayLink {
             CVDisplayLinkStart(self.display_link_ref);
             dispatch_resume(self.source)
         }
+    }
+    /// Registers the display link with the standard loop.
+    pub fn add_to_main_run_loop(&self) {
+        #[cfg(target_os = "ios")]
+        let (run_loop, mode) = self.get_main_run_loop();
+        #[cfg(target_os = "macos")]
+        let (run_loop, mode) = (nil, nil);
 
+        self.add_to_run_loop_for_mode(run_loop, mode)
+    }
+    #[cfg(target_os = "ios")]
+    #[inline]
+    fn get_main_run_loop(&self) -> (id, id) {
+        let run_loop_class = class!(NSRunLoop);
+        let run_loop = unsafe { msg_send![run_loop_class, mainRunLoop] };
+        let mode = unsafe { NSRunLoopCommonModes };
+        (run_loop, mode)
+    }
+    /// Gets the duration component of a type checking result.
+    pub fn get_duration(&self) -> NSTimeInterval {
+        #[cfg(target_os = "ios")]
+        unsafe { msg_send![self.display_link, duration] }
+        #[cfg(target_os = "macos")]
+        0.
     }
     /// Removes the display link from all run loop modes.
     pub fn invalidate(&mut self) {

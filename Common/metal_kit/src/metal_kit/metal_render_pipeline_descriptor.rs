@@ -58,6 +58,10 @@ impl MetalRenderPipelineDescriptor {
             pool.drain();
         }
     }
+    /// Sets the pixel format of the attachment that stores depth data.
+    pub fn set_depth_attachment_pixel_format(&mut self, pixel_format: MTLPixelFormat) {
+        unsafe { msg_send![self.descriptor, setDepthAttachmentPixelFormat:pixel_format] }
+    }
     /// Sets a programmable function that processes individual vertices in a rendering pass.
     pub fn set_vertex_function(&mut self, vertex_function: id) {
         unsafe {

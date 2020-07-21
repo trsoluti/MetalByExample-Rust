@@ -9,6 +9,7 @@
 //! Thin wrappers for MTLClearColor struct and associated data
 
 use std::os::raw::c_double;
+use objc::{Encode, Encoding};
 
 // From Metal.framework/Versions/A/Headers/MTLRenderPass.h
 // typedef struct
@@ -26,6 +27,22 @@ pub struct MetalClearColor {
     green: c_double,
     blue: c_double,
     alpha: c_double,
+}
+impl Default for MetalClearColor {
+    fn default() -> Self {
+        MetalClearColor {
+            red: 0.,
+            green: 0.,
+            blue: 0.,
+            alpha: 0.,
+        }
+    }
+}
+unsafe impl Encode for MetalClearColor {
+    fn encode() -> Encoding {
+        let d:String = f64::encode().as_str().parse().unwrap();
+        unsafe { Encoding::from_str(format!("{{?={}{}{}{}}}",d,d,d,d).as_str()) }
+    }
 }
 // MTL_INLINE MTLClearColor MTLClearColorMake(double red, double green, double blue, double alpha);
 impl MetalClearColor {

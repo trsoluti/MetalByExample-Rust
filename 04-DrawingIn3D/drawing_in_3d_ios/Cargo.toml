@@ -10,6 +10,7 @@ edition = "2018"
 objc = "*"
 cocoa = "*"
 state = "*"
+core-graphics = "*"
 metal_kit = { path = "../../Common/metal_kit" }
 core_animation = { path = "../../Common/core_animation" }
 

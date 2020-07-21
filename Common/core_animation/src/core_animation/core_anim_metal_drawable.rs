@@ -10,12 +10,15 @@
 use objc::msg_send;
 use objc::sel;
 use objc::sel_impl;
-use cocoa::base::id;
+use cocoa::base::{id, nil};
 use objc::runtime::{objc_release, objc_retain};
 
 /// Thin wrapper for CAMetalDrawable
 pub struct CoreAnimMetalDrawable {
     drawable: id,
+}
+impl Default for CoreAnimMetalDrawable {
+    fn default() -> Self { CoreAnimMetalDrawable { drawable: nil } }
 }
 impl From<id> for CoreAnimMetalDrawable {
     fn from(drawable: id) -> Self {

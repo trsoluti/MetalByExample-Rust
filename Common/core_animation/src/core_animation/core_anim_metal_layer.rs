@@ -14,6 +14,7 @@ use cocoa::base::{id, nil};
 use cocoa::foundation::NSUInteger;
 use crate::core_animation::core_anim_metal_drawable::CoreAnimMetalDrawable;
 use objc::runtime::{objc_retain, objc_release};
+use core_graphics::geometry::CGSize;
 
 // From System/Library/Frameworks/Metal.framework/Versions/A/Headers/MTLPixelFormat.h:
 // typedef NS_ENUM(NSUInteger, MTLPixelFormat) {...}
@@ -44,11 +45,13 @@ impl Drop for CoreAnimMetalLayer {
 }
 
 impl CoreAnimMetalLayer {
-    /// Returns the underlying objective c metal layer
+    /// Returns the underlying objective c metal layer.
     pub fn to_objc(&self) -> id { self.layer }
     // Note this has to be ID or we would have a circular dependency
     // between core_animation and metal_kit.
-    /// Sets the Metal device to the given value
+    /// Gets the Metal device for the layer.
+    pub fn get_device(&self) -> id { unsafe { msg_send![self.layer, device] } }
+    /// Sets the Metal device to the given value.
     pub fn set_device(&mut self, device: id) {
         unsafe { msg_send![self.layer, setDevice:device]}
     }
@@ -61,5 +64,13 @@ impl CoreAnimMetalLayer {
     pub fn next_drawable(&self) -> CoreAnimMetalDrawable {
         let drawable:id = unsafe { msg_send![self.layer, nextDrawable] };
         CoreAnimMetalDrawable::from(drawable)
+    }
+    /// Gets the size, in pixels, of textures for rendering layer content.
+    pub fn get_drawable_size(&self) -> CGSize {
+        unsafe { msg_send![self.layer, drawableSize] }
+    }
+    /// Sets the size, in pixels, of textures for rendering layer content.
+    pub fn set_drawable_size(&self, size: CGSize) {
+        unsafe { msg_send![self.layer, setDrawableSize:size] }
     }
 }

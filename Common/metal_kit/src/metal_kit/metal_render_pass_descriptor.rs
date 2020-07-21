@@ -16,6 +16,7 @@ use cocoa::base::{id, nil};
 use objc::runtime::{objc_retain, objc_release};
 use cocoa::foundation::NSUInteger;
 use crate::MetalClearColor;
+use crate::metal_kit::metal_render_pass_depth_attachment_descriptor::MetalRenderPassDepthAttachment;
 
 // From System/Library/Frameworks/Metal.framework/Headers/MTLRenderPass.h:
 // typedef NS_ENUM(NSUInteger, MTLLoadAction) {
@@ -25,7 +26,7 @@ use crate::MetalClearColor;
 // } API_AVAILABLE(macos(10.11), ios(8.0));
 #[allow(non_upper_case_globals)]
 /// A value is written to every pixel in the specified attachment.
-pub static MTLLoadActionClear: NSUInteger = 2;
+pub const MTLLoadActionClear: NSUInteger = 2;
 // typedef NS_ENUM(NSUInteger, MTLStoreAction) {
 //     MTLStoreActionDontCare = 0,
 //     MTLStoreActionStore = 1,
@@ -35,8 +36,12 @@ pub static MTLLoadActionClear: NSUInteger = 2;
 //     MTLStoreActionCustomSampleDepthStore API_AVAILABLE(macos(10.13), ios(11.0)) = 5,
 // } API_AVAILABLE(macos(10.11), ios(8.0));
 #[allow(non_upper_case_globals)]
+/// Each pixel in the attachment is allowed to take on any value
+/// at the start of the rendering pass.
+pub const MTLStoreActionDontCare: NSUInteger = 0;
+#[allow(non_upper_case_globals)]
 /// The final results of the rendering pass are stored in the attachment.
-pub static MTLStoreActionStore: NSUInteger = 1;
+pub const MTLStoreActionStore: NSUInteger = 1;
 
 /// Rust wrapper for a group of render targets
 /// that hold the results of a render pass.
@@ -69,6 +74,10 @@ impl MetalRenderPassDescriptor {
     }
     /// Returns the underlying objective c descriptor
     pub fn objc_id(&self ) -> id {
+        self.descriptor
+    }
+    /// Returns the underlying objective c descriptor
+    pub fn to_objc(&self ) -> id {
         self.descriptor
     }
     /// Sets, for the render target at the given index,
@@ -104,5 +113,9 @@ impl MetalRenderPassDescriptor {
         let color_attachment = unsafe { msg_send![color_attachments, objectAtIndexedSubscript:index] };
         color_attachment
     }
-
+    /// Gets the depth attachment for this render pass.
+    pub fn get_depth_attachment(&self) -> MetalRenderPassDepthAttachment {
+        let depth_attachment:id = unsafe { msg_send![self.descriptor, depthAttachment] };
+        MetalRenderPassDepthAttachment::from(depth_attachment)
+    }
 }

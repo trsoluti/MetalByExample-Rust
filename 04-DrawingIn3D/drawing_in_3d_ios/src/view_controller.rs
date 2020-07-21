@@ -18,8 +18,6 @@ use state::Storage;
 use std::sync::{RwLock, RwLockReadGuard, LockResult, RwLockWriteGuard};
 use std::ptr::null_mut;
 use crate::debug_log;
-use crate::mbe_items::RustMBERenderer;
-use cocoa::base::id;
 
 // //
 // //  ViewController.h
@@ -35,7 +33,7 @@ use cocoa::base::id;
 /// Rust implementation of our application's view controller
 #[derive(Default)]
 pub struct ViewControllerRust {
-    renderer: RustMBERenderer,
+    // renderer: RustMBERenderer,
 }
 
 unsafe impl Send for ViewControllerRust {}
@@ -63,7 +61,6 @@ impl ViewControllerPtr {
             // dropping p should drop everything
             self.view_controller_ptr = null_mut();
         }
-
     }
 }
 unsafe impl Encode for ViewControllerPtr {
@@ -129,11 +126,14 @@ extern "C" fn view_did_load(_self: &mut Object, _sel: Sel) {
     debug_log("In ViewController: view_did_load");
     // self.renderer = [MBERenderer new];
     // self.metalView.delegate = self.renderer;
-    let renderer = RustMBERenderer::new();
-    let view:id = unsafe { msg_send![_self, view] };
-    let _:() = unsafe { msg_send![view, setDelegate: renderer.to_objc()]};
-    let mut rust_view_controller = get_mut_rust_view_controller(_self).unwrap();
-    rust_view_controller.renderer = renderer;
+    //x let renderer = RustMBERenderer::new();
+    //x let view:id = unsafe { msg_send![_self, view] };
+    //x let _:() = unsafe { msg_send![view, setDelegate: renderer.to_objc()]};
+    //x let mut rust_view_controller = get_mut_rust_view_controller(_self).unwrap();
+    //x rust_view_controller.renderer = renderer;
+    // TOD: it's not rust-appropriate for ViewController to own
+    // the renderer and then have MetalView refer to it.
+    // The code to set the renderer has been moved to MetalView.
 }
 // }
 //
