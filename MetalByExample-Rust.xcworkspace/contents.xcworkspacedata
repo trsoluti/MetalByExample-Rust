@@ -58,6 +58,13 @@
                location = "group:DrawingIn3DIOS/DrawingIn3DIOS.xcodeproj">
             </FileRef>
          </Group>
+         <Group
+            location = "container:04-DrawingIn3D/drawing_in_3d_macos"
+            name = "drawing_in_3d_macos">
+            <FileRef
+               location = "group:DrawingIn3DMacOS/DrawingIn3DMacOS.xcodeproj">
+            </FileRef>
+         </Group>
       </Group>
    </Group>
 </Workspace>
