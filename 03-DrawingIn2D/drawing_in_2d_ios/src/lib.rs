@@ -16,7 +16,6 @@ mod app_delegate;
 mod scene_delegate;
 mod view_controller;
 mod metal_view;
-mod vector_types;
 
 use cocoa::base::{id, nil};
 use cocoa::foundation::{NSAutoreleasePool, NSString};

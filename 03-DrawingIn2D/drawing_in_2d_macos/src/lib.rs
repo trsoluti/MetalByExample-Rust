@@ -15,7 +15,6 @@
 mod app_delegate;
 mod view_controller;
 mod metal_view;
-mod vector_types;
 mod display_link;
 
 use cocoa::base::{id, nil};
@@ -25,9 +24,6 @@ use cocoa::foundation::{NSAutoreleasePool, NSString};
 pub use crate::app_delegate::AppDelegateRust;
 pub use crate::view_controller::ViewControllerRust;
 pub use crate::metal_view::MetalViewRust;
-pub use crate::vector_types::vector_float4;
-pub use crate::vector_types::vector_float2;
-pub use crate::vector_types::vector_uint2;
 pub use crate::display_link::CoreAnimVideoDisplayLink;
 pub use crate::display_link::CoreAnimVideoError;
 

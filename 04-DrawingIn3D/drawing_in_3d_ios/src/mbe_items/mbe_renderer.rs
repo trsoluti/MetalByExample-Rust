@@ -18,9 +18,8 @@ use cocoa::foundation::{NSInteger, NSTimeInterval};
 use std::os::raw::{c_float,c_void};
 use core_animation::{DispatchSemaphore, MTLPixelFormatBGRA8Unorm, DISPATCH_TIME_FOREVER};
 use objc::runtime::YES;
-use crate::{vector_float3, debug_log};
-use crate::vector_float4;
-use crate::matrix_types::matrix_float4x4;
+use crate::debug_log;
+use matrix_kit::{vector_float3, vector_float4, matrix_float4x4};
 use std::mem::size_of;
 use cocoa::base::id;
 

@@ -40,8 +40,6 @@
 		850EFDDF24C29E12000B6FB5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		850EFDEC24C29FE7000B6FB5 /* Shaders.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
 		850EFDF424C2B81D000B6FB5 /* libdrawing_in_3d_ios.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libdrawing_in_3d_ios.a; path = "../target/aarch64-apple-ios/debug/libdrawing_in_3d_ios.a"; sourceTree = "<group>"; };
-		859A208F24C46C6F00E3967E /* libGlueLib.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libGlueLib.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		859A209324C46C9400E3967E /* libGlueLib.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libGlueLib.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		859A20AE24C46E5B00E3967E /* GlueLibFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GlueLibFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -100,8 +98,6 @@
 			isa = PBXGroup;
 			children = (
 				859A20AE24C46E5B00E3967E /* GlueLibFramework.framework */,
-				859A209324C46C9400E3967E /* libGlueLib.dylib */,
-				859A208F24C46C6F00E3967E /* libGlueLib.dylib */,
 				850EFDF424C2B81D000B6FB5 /* libdrawing_in_3d_ios.a */,
 			);
 			name = Frameworks;

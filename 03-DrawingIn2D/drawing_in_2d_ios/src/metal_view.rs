@@ -18,7 +18,7 @@ use cocoa::base::{id, nil};
 use state::Storage;
 use std::sync::{RwLock, RwLockReadGuard, LockResult, RwLockWriteGuard};
 use crate::{debug_log};
-use crate::vector_types::vector_float4;
+use matrix_kit::vector_float4;
 use metal_kit::{MetalDevice, MTLResourceCPUCacheModeDefaultCache};
 use metal_kit::MetalRenderPipelineDescriptor;
 use cocoa::foundation::{NSString, NSAutoreleasePool};

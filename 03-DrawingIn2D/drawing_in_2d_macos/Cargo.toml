@@ -12,6 +12,7 @@ cocoa = "*"
 state = "*"
 metal_kit = { path = "../../Common/metal_kit" }
 core_animation = { path = "../../Common/core_animation" }
+matrix_kit = { path = "../../Common/matrix_kit" }
 
 [lib]
 crate-type = ["cdylib"]
