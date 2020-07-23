@@ -8,7 +8,11 @@
 
 #import <Cocoa/Cocoa.h>
 
+void register_rust_classes(void);
+
 int main(int argc, const char * argv[]) {
+  register_rust_classes();
+  
   @autoreleasepool {
       // Setup code that might create autoreleased objects goes here.
   }

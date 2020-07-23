@@ -178,8 +178,10 @@ impl Drop for CoreAnimDisplayLink {
     fn drop(&mut self) {
         self.invalidate();
         unsafe {
-            objc_release(self.source);
-            objc_release(self.target);
+            if let Some(display_link) = &self.display_link {
+                objc_release(display_link.source);
+                objc_release(display_link.target);
+            }
         }
     }
 }
@@ -278,7 +280,7 @@ impl CoreAnimDisplayLink {
         #[cfg(target_os = "ios")]
         unsafe { msg_send![self.display_link, duration] }
         #[cfg(target_os = "macos")]
-        0.
+        return 1. / 60.
     }
     /// Removes the display link from all run loop modes.
     pub fn invalidate(&mut self) {
@@ -286,8 +288,11 @@ impl CoreAnimDisplayLink {
         unsafe { msg_send![self.display_link, invalidate] }
         #[cfg(target_os = "macos")]
         unsafe {
-            CVDisplayLinkStop(self.display_link_ref);
-            dispatch_suspend(self.source)
+            if self.display_link.is_some()
+            {
+                CVDisplayLinkStop(self.display_link_ref);
+                dispatch_suspend(self.source)
+            }
         }
     }
 }
